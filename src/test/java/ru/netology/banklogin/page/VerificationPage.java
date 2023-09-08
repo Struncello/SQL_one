@@ -11,7 +11,7 @@ public class VerificationPage {
     private final SelenideElement verifyButton = $("[data-test-id=action-verify]");
     private final SelenideElement errorNotification = $("[data-test-id=error-notification]");
 
-    public DashboardPage validVerify() {
+    public DashboardPage validVerify(Object verificationCode) {
         DataHelper.VerificationCode verificationCode = null;
         verify(null);
         return new DashboardPage();
