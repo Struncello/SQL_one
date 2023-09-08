@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'io.freefair.lombok' version '6.6.1'
+}
+
+group 'ru.netology'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11;
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:24.0.0'
+    testImplementation 'com.codeborne:selenide:6.18.0'
+    testImplementation 'commons-dbutils:commons-dbutils:1.7'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'mysql:mysql-connector-java:8.0.33'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'selenoe.headless', System.getProperty('selenoe.headless')
+}
