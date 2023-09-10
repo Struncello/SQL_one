@@ -31,9 +31,9 @@ public class DataHelper {
         return new AuthInfo(generateRandomLogin(), generateRandomPassword());
     }
 
-    public static VerificationCode generateVerificationCode() {
+    public static String generateVerificationCode() {
 
-        return new VerificationCode(faker.numerify("######"));
+        return faker.numerify("######");
     }
 
     @Value
@@ -45,10 +45,5 @@ public class DataHelper {
     @Value
     public static class VerificationCode {
         String code;
-    }
-
-
-    public static VerificationCode getVerificationWrongCode() {
-        return new VerificationCode("12345");
     }
 }

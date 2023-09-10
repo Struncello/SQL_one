@@ -40,4 +40,14 @@ public class LoginPage {
     public void checkSystemBlocked() {
         passwordField.shouldNotBe(visible);
     }
+
+    public VerificationPage validLogin(String authInfoLogin) {
+        enterLogin(new DataHelper.AuthInfo(authInfoLogin, ""));
+        enterPassword(new DataHelper.AuthInfo("", "somePassword"));
+        return confirmAuth();
+    }
+
+    public void verifyErrorNotificationVisibility() {
+        $(".notification_visible").shouldBe(visible);
+    }
 }

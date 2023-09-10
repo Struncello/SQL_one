@@ -1,6 +1,5 @@
 package ru.netology.banklogin.data;
 
-
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
@@ -11,10 +10,6 @@ import java.sql.SQLException;
 
 public class SQLHelper {
     private static QueryRunner runner = new QueryRunner();
-
-    private SQLHelper() {
-
-    }
 
     private static Connection getConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
@@ -35,5 +30,10 @@ public class SQLHelper {
         runner.execute("DELETE FROM cards_transactions");
         runner.execute("DELETE FROM cards");
         runner.execute("DELETE FROM users");
+    }
+
+    public String getCode() {
+        String code = null;
+        return code;
     }
 }

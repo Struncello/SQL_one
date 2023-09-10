@@ -1,14 +1,18 @@
 plugins {
     id 'java'
-    id 'io.freefair.lombok' version '6.6.1'
+    id 'io.freefair.lombok' version '6.2.0'
 }
 
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 11;
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
+
+def encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = encoding
+}
 
 repositories {
     mavenCentral()
