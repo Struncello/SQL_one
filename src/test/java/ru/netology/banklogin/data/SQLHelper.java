@@ -26,14 +26,10 @@ public class SQLHelper {
     @SneakyThrows
     public static void cleanDatabase() {
         var connection = getConn();
-        runner.execute("DELITE FROM auth_codes");
+        runner.execute("DELETE FROM auth_codes");
         runner.execute("DELETE FROM cards_transactions");
         runner.execute("DELETE FROM cards");
         runner.execute("DELETE FROM users");
     }
 
-    public String getCode() {
-        String code = null;
-        return code;
-    }
 }

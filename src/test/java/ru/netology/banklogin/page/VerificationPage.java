@@ -1,7 +1,6 @@
 package ru.netology.banklogin.page;
 
 import com.codeborne.selenide.SelenideElement;
-import ru.netology.banklogin.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -12,17 +11,22 @@ public class VerificationPage {
     private final SelenideElement verifyButton = $("[data-test-id=action-verify]");
     private final SelenideElement errorNotification = $("[data-test-id=error-notification]");
 
-    public DashboardPage validVerify(DataHelper.VerificationCode verificationCode) {
-        verify(verificationCode.getCode());
-        return new DashboardPage();
+
+    public void verifyVerificationPageVisibility() {
+        codeField.shouldBe(visible);
     }
 
-    public void verifyErrorNotificationVisibility() {
+    public void verifyErrorNotificationPageVisibility() {
         errorNotification.shouldBe(visible);
     }
 
+    public DashboardPage validVerify(String verificationCode) {
+        verify(verificationCode);
+        return new DashboardPage();
+    }
+
     public void verify(String verificationCode) {
-        codeField.setValue(String.valueOf(verificationCode));
+        codeField.setValue(verificationCode);
         verifyButton.click();
     }
 
