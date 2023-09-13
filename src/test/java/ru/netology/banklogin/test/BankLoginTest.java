@@ -1,6 +1,5 @@
 package ru.netology.banklogin.test;
 
-import com.mysql.cj.protocol.Warning;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +25,7 @@ public class BankLoginTest {
         var verificationPage = loginPage.validLogin(String.valueOf(authInfo));
         verificationPage.verifyVerificationPageVisibility();
         var verificationCode = SQLHelper.getVerificationCode();
-        Warning VerificationCode = null;
-        verificationPage.validVerify(String.valueOf(VerificationCode.getCode()));
+        verificationPage.validVerify(verificationCode.getCode());
     }
 
     @Test
@@ -46,8 +44,8 @@ public class BankLoginTest {
         var authInfo = DataHelper.getAuthInfoWithTestData();
         var verificationPage = loginPage.validLogin(String.valueOf(authInfo));
         verificationPage.verifyVerificationPageVisibility();
-        var verificationCode = DataHelper.generateVRandomVerificationCode();
-        verificationPage.verify((String) verificationCode);
-        verificationPage.verifyErrorNotificationPageVisibility();
+        var verificationCode = DataHelper.generateVerificationCode();
+        verificationPage.validVerify(verificationCode);
+        verificationPage.verifyErrorNotificationVisibility();
     }
 }
