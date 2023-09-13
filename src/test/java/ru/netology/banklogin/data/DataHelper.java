@@ -9,23 +9,20 @@ import lombok.Value;
 import java.util.Locale;
 
 public class DataHelper {
-    private static final Faker faker = new Faker(new Locale("en"));
+    private static Faker faker = new Faker(new Locale("en"));
 
     private DataHelper() {
     }
 
     public static AuthInfo getAuthInfoWithTestData() {
-
         return new AuthInfo("vasya", "qwerty123");
     }
 
     public static String generateRandomLogin() {
-
         return faker.name().username();
     }
 
     public static String generateRandomPassword() {
-
         return faker.internet().password();
     }
 
@@ -33,13 +30,8 @@ public class DataHelper {
         return new AuthInfo(generateRandomLogin(), generateRandomPassword());
     }
 
-    public static String generateVerificationCode() {
-
-        return faker.numerify("######");
-    }
-
-    public static Object generateVRandomVerificationCode() {
-        return null;
+    public static VerificationCode generateRandomVerificationCode() {
+        return new VerificationCode(faker.numerify("#####"));
     }
 
     @Value

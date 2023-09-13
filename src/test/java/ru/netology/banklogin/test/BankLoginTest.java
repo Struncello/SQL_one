@@ -22,7 +22,7 @@ public class BankLoginTest {
     void shouldSuccessfulLogin() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.getAuthInfoWithTestData();
-        var verificationPage = loginPage.validLogin(String.valueOf(authInfo));
+        var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVerificationPageVisibility();
         var verificationCode = SQLHelper.getVerificationCode();
         verificationPage.validVerify(verificationCode.getCode());
@@ -33,7 +33,7 @@ public class BankLoginTest {
     void shouldGetErrorNotificationIfLoginWithRandomUserWithoutAddingToBase() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.generateRandomUser();
-        loginPage.validLogin(String.valueOf(authInfo));
+        loginPage.validLogin(authInfo);
         loginPage.verifyErrorNotificationVisibility();
     }
 
@@ -42,10 +42,10 @@ public class BankLoginTest {
     void shouldGetErrorNotificationIfLoginWithExistUserAndRandomVerificationCode() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.getAuthInfoWithTestData();
-        var verificationPage = loginPage.validLogin(String.valueOf(authInfo));
+        var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVerificationPageVisibility();
-        var verificationCode = DataHelper.generateVerificationCode();
-        verificationPage.validVerify(verificationCode);
+        var verificationCode = DataHelper.generateRandomVerificationCode();
+        verificationPage.validVerify(String.valueOf(verificationCode));
         verificationPage.verifyErrorNotificationVisibility();
     }
 }
