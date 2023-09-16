@@ -31,7 +31,7 @@ public class DataHelper {
     }
 
     public static VerificationCode generateRandomVerificationCode() {
-        return new VerificationCode(faker.numerify("#####"));
+        return new VerificationCode(faker.numerify("######"));
     }
 
     @Value
